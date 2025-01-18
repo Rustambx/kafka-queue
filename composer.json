@@ -1,0 +1,17 @@
+{
+    "name": "rustam/kafka-queue",
+    "require": {
+        "laravel/framework": "^8.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rustam\\KafkaQueue\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rustambx",
+            "email": "rustambx@gmail.com"
+        }
+    ]
+}
