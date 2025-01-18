@@ -1,5 +1,5 @@
 {
-    "name": "rustam/kafka-queue",
+    "name": "rustambx/kafka-queue",
     "require": {
         "laravel/framework": "^8.12"
     },
