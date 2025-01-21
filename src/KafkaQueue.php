@@ -25,7 +25,7 @@ class KafkaQueue extends Queue implements QueueContract
     {
         $topic = $this->producer->newTopic($queue ?? env('KAFKA_QUEUE'));
         $topic->produce(RD_KAFKA_PARTITION_UA, 0, serialize($job));
-        $this->producer->flush(1000);
+        $this->producer->flush(5000);
     }
 
     public function pushRaw($payload, $queue = null, array $options = [])
@@ -40,7 +40,13 @@ class KafkaQueue extends Queue implements QueueContract
 
     public function pop($queue = null)
     {
-        $this->consumer->subscribe([$queue]);
+        $queue = $queue ?? env('KAFKA_QUEUE');
+
+        if (is_string($queue)) {
+            $queue = [$queue];
+        }
+
+        $this->consumer->subscribe($queue);
 
         try {
             $message = $this->consumer->consume(120 * 1000);
